@@ -1,5 +1,5 @@
 import Login from './Login'
-// import Forgot from './Forgot'
+import Forgot from './Forgot'
 
 const authRoutes = [
   {
@@ -8,11 +8,11 @@ const authRoutes = [
     component: Login,
     name: 'Login'
   },
-  // {
-  //   path: '/forgot',
-  //   component: Forgot,
-  //   name: 'Forgot Password'
-  // }
+  {
+    path: '/forgot-password',
+    component: Forgot,
+    name: 'Forgot Password'
+  }
 ]
 
 export default authRoutes

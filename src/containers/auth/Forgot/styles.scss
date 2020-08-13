@@ -1,28 +1,28 @@
-.login-page-container {
+.forgot-page-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   background-color: #00262b;
 
-  .login-form {
+  .forgot-form {
     width: 400px;
     padding: 50px;
     border-radius: 15px;
     background-color: white;
 
-    .login-form-logo {
+    .forgot-form-logo {
       text-align: center;
       margin-bottom: 30px;
     }
 
-    .login-form-forgot {
-      margin-top: 10px;
+    .forgot-form-login {
+      margin-bottom: 10px;
       display: block;
       text-align: center;
     }
 
-    .login-form-button {
+    .forgot-form-button {
       width: 100%;
     }
   }

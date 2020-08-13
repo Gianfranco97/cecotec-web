@@ -1,11 +1,12 @@
 import React from "react";
 import { Form, Input, Button } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 import logoIMG from "../../../assets/img/cecotec-logo.jpg";
 
 import "./styles.scss";
 
-class LoginForm extends React.Component {
+class LoginPage extends React.Component {
   onFinish = (values) => {
     console.log("Success:", values);
   };
@@ -36,9 +37,9 @@ class LoginForm extends React.Component {
               type="password"
               placeholder="Password"
             />
-            <a className="login-form-forgot" href="forgot-password">
+            <Link to="forgot-password" className="login-form-forgot">
               Forgot password
-            </a>
+            </Link>
           </Form.Item>
 
           <Form.Item>
@@ -49,7 +50,6 @@ class LoginForm extends React.Component {
             >
               Log in
             </Button>
-            Or <a href="register">register now!</a>
           </Form.Item>
         </Form>
       </div>
@@ -57,4 +57,4 @@ class LoginForm extends React.Component {
   }
 }
 
-export default LoginForm;
+export default LoginPage;
