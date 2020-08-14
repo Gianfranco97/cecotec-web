@@ -63,22 +63,25 @@ class ProductsPage extends React.Component {
             <List.Item
               key={`product-${item.id}`}
               actions={[
-                <a
-                  key="list-loadmore-edit"
+                <Button
+                  type="link"
                   onClick={() => {
-                    this.setState({ selectedProduct: item, showFormModal: true });
+                    this.setState({
+                      selectedProduct: item,
+                      showFormModal: true,
+                    });
                   }}
                 >
                   edit
-                </a>,
-                <a
-                  key="list-loadmore-more"
+                </Button>,
+                <Button
+                  type="link"
                   onClick={() =>
                     confirmDeleteProduct(item.name, item.id, this.deleteProduct)
                   }
                 >
                   delete
-                </a>,
+                </Button>,
               ]}
             >
               <List.Item.Meta
@@ -99,7 +102,13 @@ class ProductsPage extends React.Component {
           + ADD PRODUCT
         </Button>
 
-        {showFormModal && <ProductForm visible closeModal={this.closeModal} selectedProduct={selectedProduct} />}
+        {showFormModal && (
+          <ProductForm
+            visible
+            closeModal={this.closeModal}
+            selectedProduct={selectedProduct}
+          />
+        )}
       </AdminLayout>
     );
   }
