@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Input, Button, Spin } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Link, withRouter } from "react-router-dom";
-import logoIMG from "../../../assets/img/cecotec-logo.jpg";
+import AuthLayout from "../../../components/AuthLayout";
 import api from "../../../shared/api";
 
 import "./styles.scss";
@@ -30,11 +30,7 @@ class LoginPage extends React.Component {
   };
 
   loginPassword = () => (
-    <Form className="login-form" onFinish={this.onFinish}>
-      <div className="login-form-logo">
-        <img src={logoIMG} alt="cecotec" />
-      </div>
-
+    <Form onFinish={this.onFinish}>
       <Form.Item
         name="username"
         rules={[{ required: true, message: "Please input your Username!" }]}
@@ -70,11 +66,11 @@ class LoginPage extends React.Component {
   render() {
     const { loading } = this.state;
     return (
-      <div className="login-page-container">
+      <AuthLayout>
         <Spin spinning={loading} delay={500}>
           {this.loginPassword()}
         </Spin>
-      </div>
+      </AuthLayout>
     );
   }
 }

@@ -31,9 +31,9 @@ const GenerateRoutes = ({ routes, rootPath, isAuthenticated }) => (
       />
     ))}
 
-    <Route path="*">
+    {/* <Route path="*">
       <MissingPage />
-    </Route>
+    </Route> */}
   </React.Fragment>
 );
 
