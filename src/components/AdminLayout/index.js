@@ -11,7 +11,7 @@ import "./styles.scss";
 
 const { Header, Content, Footer, Sider } = Layout;
 
-export default ({ children }) => (
+export default ({ children, title }) => (
   <Layout className="admin-layout">
     <Sider
       breakpoint="lg"
@@ -43,8 +43,10 @@ export default ({ children }) => (
       <Header
         className="site-layout-sub-header-background"
         style={{ padding: 0 }}
-      />
-      <Content style={{ margin: "24px 16px 0" }}>
+      >
+        <h1 style={{ marginLeft: 20 }}>{title}</h1>
+      </Header>
+      <Content className="admin-content" style={{ margin: "24px 16px 0" }}>
         <div className="site-layout-background" style={{ padding: 24 }}>
           {children}
         </div>

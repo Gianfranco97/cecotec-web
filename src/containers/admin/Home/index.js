@@ -1,11 +1,11 @@
 import React from "react";
-import AdminLatout from "../../../components/AdminLayout";
+import AdminLayout from "../../../components/AdminLayout";
 import "./styles.scss";
 
 class AdminHomePage extends React.Component {
   render() {
     return (
-      <AdminLatout>
+      <AdminLayout>
         <p>
           Dolore cupidatat laborum dolor enim incididunt consequat pariatur
           aliqua. Adipisicing velit enim amet sunt. Nostrud enim fugiat aliquip
@@ -13,7 +13,7 @@ class AdminHomePage extends React.Component {
           occaecat laboris aliqua laboris commodo aute ad. Minim elit eu ut
           labore id ad tempor. Consectetur nisi ea irure sunt ut deserunt.
         </p>
-      </AdminLatout>
+      </AdminLayout>
     );
   }
 }
