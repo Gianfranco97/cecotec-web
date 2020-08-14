@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Spin } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import logoIMG from "../../../assets/img/cecotec-logo.jpg";
@@ -9,11 +9,17 @@ import "./styles.scss";
 class ForgotPage extends React.Component {
   state = {
     emailSent: false,
+    loading: false,
   };
 
   onFinish = (values) => {
-    this.setState({
-      emailSent: true,
+    this.setState({ loading: true }, () => {
+      setTimeout(() => {
+        this.setState({
+          loading: false,
+          emailSent: true,
+        });
+      }, 1000);
     });
   };
 
@@ -68,10 +74,13 @@ class ForgotPage extends React.Component {
   );
 
   render() {
-    const { emailSent } = this.state;
+    const { emailSent, loading } = this.state;
+
     return (
       <div className="forgot-page-container">
-        {!emailSent ? this.forgotForm() : this.message()}
+        <Spin spinning={loading} delay={500}>
+          {!emailSent ? this.forgotForm() : this.message()}
+        </Spin>
       </div>
     );
   }
