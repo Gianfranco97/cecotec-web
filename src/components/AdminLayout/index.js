@@ -7,6 +7,7 @@ import {
   UnorderedListOutlined,
 } from "@ant-design/icons";
 import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 import confirmLogout from "./confirmLogout";
 import api from "../../shared/api";
 import logoIMG from "../../assets/img/cecotec-logo.jpg";
@@ -101,5 +102,10 @@ class AdminLayout extends React.Component {
     );
   }
 }
+
+AdminLayout.propTypes = {
+  history: PropTypes.object.isRequired,
+  children: PropTypes.element.isRequired,
+};
 
 export default withRouter(AdminLayout);

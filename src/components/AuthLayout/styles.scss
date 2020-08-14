@@ -1,9 +1,12 @@
+@import "../../colors.scss";
+
 .auth-page-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: #00262b;
+  background-color: $base-color;
+
 
   .auth-form {
     width: 400px;

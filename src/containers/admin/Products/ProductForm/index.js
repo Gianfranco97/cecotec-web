@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, Form, Input, InputNumber, Spin } from "antd";
+import PropTypes from "prop-types";
 import api from "../../../../shared/api";
 
 class ProductForm extends React.Component {
@@ -74,5 +75,11 @@ class ProductForm extends React.Component {
     );
   }
 }
+
+ProductForm.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+  visible: PropTypes.element.isRequired,
+  selectedProduct: PropTypes.object,
+};
 
 export default ProductForm;

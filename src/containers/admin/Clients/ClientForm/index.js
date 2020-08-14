@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, Form, Input, Spin } from "antd";
+import PropTypes from "prop-types";
 import api from "../../../../shared/api";
 
 const { TextArea } = Input;
@@ -72,5 +73,11 @@ class ClientForm extends React.Component {
     );
   }
 }
+
+ClientForm.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+  visible: PropTypes.element.isRequired,
+  selectedClient: PropTypes.object,
+};
 
 export default ClientForm;

@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Input, Button, Spin } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Link, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 import AuthLayout from "../../../components/AuthLayout";
 import api from "../../../shared/api";
 
@@ -74,5 +75,9 @@ class LoginPage extends React.Component {
     );
   }
 }
+
+LoginPage.propTypes = {
+  history: PropTypes.object.isRequired,
+};
 
 export default withRouter(LoginPage);

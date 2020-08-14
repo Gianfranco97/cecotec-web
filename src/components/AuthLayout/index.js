@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import logoIMG from "../../assets/img/cecotec-logo.jpg";
 
 import "./styles.scss";
@@ -19,5 +20,9 @@ class AuthLayout extends React.Component {
     );
   }
 }
+
+AuthLayout.propTypes = {
+  children: PropTypes.element.isRequired,
+};
 
 export default AuthLayout;
