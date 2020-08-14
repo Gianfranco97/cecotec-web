@@ -5,7 +5,7 @@ import "./styles.scss";
 class AdminHomePage extends React.Component {
   render() {
     return (
-      <AdminLayout>
+      <AdminLayout title="Home">
         <p>
           Dolore cupidatat laborum dolor enim incididunt consequat pariatur
           aliqua. Adipisicing velit enim amet sunt. Nostrud enim fugiat aliquip
