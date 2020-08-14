@@ -65,6 +65,25 @@ const API = {
       }
     });
   },
+
+  updateProducts(data) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await fetch(`${this.serverURL}products/${data.id}`, {
+          method: "PUT",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        resolve(res.json());
+      } catch (error) {
+        reject(error);
+      }
+    });
+  },
 };
 
 export default API;

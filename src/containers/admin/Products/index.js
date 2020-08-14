@@ -12,6 +12,7 @@ class ProductsPage extends React.Component {
     loading: true,
     showFormModal: false,
     data: [],
+    selectedProduct: null,
   };
 
   componentDidMount() {
@@ -45,11 +46,11 @@ class ProductsPage extends React.Component {
 
   closeModal = (update) => {
     if (update) this.getData();
-    this.setState({ showFormModal: false });
+    this.setState({ showFormModal: false, selectedProduct: null });
   };
 
   render() {
-    const { loading, data, showFormModal } = this.state;
+    const { loading, data, showFormModal, selectedProduct } = this.state;
 
     return (
       <AdminLayout title="Products">
@@ -62,7 +63,14 @@ class ProductsPage extends React.Component {
             <List.Item
               key={`product-${item.id}`}
               actions={[
-                <a key="list-loadmore-edit">edit</a>,
+                <a
+                  key="list-loadmore-edit"
+                  onClick={() => {
+                    this.setState({ selectedProduct: item, showFormModal: true });
+                  }}
+                >
+                  edit
+                </a>,
                 <a
                   key="list-loadmore-more"
                   onClick={() =>
@@ -91,7 +99,7 @@ class ProductsPage extends React.Component {
           + ADD PRODUCT
         </Button>
 
-        {showFormModal && <ProductForm visible closeModal={this.closeModal} />}
+        {showFormModal && <ProductForm visible closeModal={this.closeModal} selectedProduct={selectedProduct} />}
       </AdminLayout>
     );
   }

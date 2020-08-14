@@ -10,21 +10,21 @@ class ProductForm extends React.Component {
     loading: false,
   };
 
-  componentDidMount() {
-    console.log(this.myForm);
-  }
-
   handleOk = () => {
     this.myForm.submit();
   };
 
   save = (values) => {
-    const { closeModal } = this.props;
+    const { closeModal, selectedProduct } = this.props;
     this.setState({ loading: true }, () => {
       setTimeout(async () => {
         try {
-            console.log(values)
-          await api.addProducts(values);
+          console.log(values);
+
+          if (selectedProduct)
+            await api.updateProducts({ id: selectedProduct.id, ...values });
+          else await api.addProducts(values);
+
           closeModal(true);
         } catch (error) {}
       }, 1000);
@@ -32,16 +32,20 @@ class ProductForm extends React.Component {
   };
 
   render() {
-    const { visible, id, name, closeModal } = this.props;
+    const { visible, selectedProduct, closeModal } = this.props;
     const { loading } = this.state;
 
     return (
       <Modal
-        title={id ? `Update '${name}'` : `Add new product`}
+        title={
+          selectedProduct
+            ? `Update '${selectedProduct.name}'`
+            : `Add new product`
+        }
         visible={visible}
         onOk={this.handleOk}
         onCancel={() => closeModal()}
-        okText={id ? "Update" : "Submit"}
+        okText={selectedProduct ? "Update" : "Submit"}
         cancelText="Cancel"
       >
         <Spin spinning={loading} delay={500}>
@@ -49,6 +53,7 @@ class ProductForm extends React.Component {
             ref={(e) => {
               this.myForm = e;
             }}
+            initialValues={selectedProduct}
             onFinish={this.save}
             layout="vertical"
             name="userForm"
