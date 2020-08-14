@@ -4,5 +4,31 @@
     "name": "Gianfranco Manganiello",
     "email": "gianfrancomanganiello1997@gmail.com",
     "userName": "gianfranco97"
-  }
+  },
+  "products": [
+    {
+      "id": 1,
+      "name": "Lightsaber",
+      "price": 200,
+      "quantity": 5
+    },
+    {
+      "id": 2,
+      "name": "Triforce",
+      "price": 1500,
+      "quantity": 1
+    },
+    {
+      "id": 4,
+      "name": "Masterball",
+      "price": 500,
+      "quantity": 3
+    },
+    {
+      "id": 5,
+      "name": "Batarang",
+      "price": 120,
+      "quantity": 15
+    }
+  ]
 }
