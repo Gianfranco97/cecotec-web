@@ -6,6 +6,7 @@ import {
   HomeOutlined,
   UnorderedListOutlined,
 } from "@ant-design/icons";
+import logoIMG from "../../assets/img/cecotec-logo.jpg";
 
 import "./styles.scss";
 
@@ -23,7 +24,10 @@ export default ({ children, title }) => (
         console.log(collapsed, type);
       }}
     >
-      <div className="logo" />
+      <div className="logo">
+        <img src={logoIMG} alt="cecotec" />
+      </div>
+
       <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
         <Menu.Item key="1" icon={<HomeOutlined />}>
           Home
