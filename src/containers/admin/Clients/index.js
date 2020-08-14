@@ -89,7 +89,7 @@ class ClientsPage extends React.Component {
                 title={<a href="https://ant.design">{item.name}</a>}
                 description={
                   <>
-                    <b>Email: </b> {item.email} <br />
+                    <b>Address: </b> {item.address} <br />
                   </>
                 }
               />
@@ -98,7 +98,7 @@ class ClientsPage extends React.Component {
         />
 
         <Button onClick={() => this.setState({ showFormModal: true })}>
-          + ADD PRODUCT
+          + ADD CLIENT
         </Button>
 
         {showFormModal && (

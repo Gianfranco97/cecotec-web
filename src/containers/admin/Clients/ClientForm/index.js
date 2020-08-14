@@ -2,6 +2,8 @@ import React from "react";
 import { Modal, Form, Input, Spin } from "antd";
 import api from "../../../../shared/api";
 
+const { TextArea } = Input;
+
 class ClientForm extends React.Component {
   state = {
     loading: false,
@@ -35,9 +37,7 @@ class ClientForm extends React.Component {
     return (
       <Modal
         title={
-          selectedClient
-            ? `Update '${selectedClient.name}'`
-            : `Add new product`
+          selectedClient ? `Update '${selectedClient.name}'` : `Add new product`
         }
         visible={visible}
         onOk={this.handleOk}
@@ -58,10 +58,14 @@ class ClientForm extends React.Component {
             <Form.Item name="name" label="Name" rules={[{ required: true }]}>
               <Input />
             </Form.Item>
-            <Form.Item name="email" label="Email" rules={[{ required: true }]}>
-              <Input type="email" />
-            </Form.Item>
 
+            <Form.Item
+              name="address"
+              label="Address"
+              rules={[{ required: true }]}
+            >
+              <TextArea autoSize={{ minRows: 3, maxRows: 5 }} />
+            </Form.Item>
           </Form>
         </Spin>
       </Modal>

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Route, Redirect } from "react-router-dom";
+import MissingPage from "../MissingPage";
 
 const GenerateRoutes = ({ routes, rootPath, isAuthenticated }) => (
   <React.Fragment>
@@ -29,12 +30,17 @@ const GenerateRoutes = ({ routes, rootPath, isAuthenticated }) => (
         }}
       />
     ))}
+
+    <Route path="*">
+      <MissingPage />
+    </Route>
   </React.Fragment>
 );
 
 GenerateRoutes.propTypes = {
   routes: PropTypes.arrayOf(PropTypes.object),
   rootPath: PropTypes.string,
+  isAuthenticated: PropTypes.bool
 };
 
 export default GenerateRoutes;
