@@ -1,22 +1,19 @@
 import React, { Component } from "react";
-import { withRouter } from 'react-router-dom'
+import { withRouter } from "react-router-dom";
 import GenerateRoutes from "./components/GenerateRoutes";
 import routesAdmin from "./containers/admin";
-import routesGuest from "./containers/auth";
+import routesAuth from "./containers/auth";
 
 class App extends Component {
   render() {
-    const isAuth = true; // TODO: cambiar para diferenciar estado
+    const isAuthenticated = !!sessionStorage.getItem("session-token");
 
-    let routes = null;
-
-    if (isAuth) {
-      routes = <GenerateRoutes routes={routesAdmin} />;
-    } else {
-      routes = <GenerateRoutes routes={routesGuest} />;
-    }
-
-    return routes;
+    return (
+      <GenerateRoutes
+        routes={[...routesAuth, ...routesAdmin]}
+        isAuthenticated={isAuthenticated}
+      />
+    );
   }
 }
 

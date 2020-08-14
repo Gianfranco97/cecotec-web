@@ -3,8 +3,7 @@ import Forgot from './Forgot'
 
 const authRoutes = [
   {
-    path: '/',
-    exact: true,
+    path: '/login',
     component: Login,
     name: 'Login'
   },

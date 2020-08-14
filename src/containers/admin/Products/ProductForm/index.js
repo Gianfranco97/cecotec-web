@@ -4,9 +4,6 @@ import api from "../../../../shared/api";
 
 class ProductForm extends React.Component {
   state = {
-    name: this.props.name,
-    price: this.props.price,
-    quantity: this.props.quantity,
     loading: false,
   };
 

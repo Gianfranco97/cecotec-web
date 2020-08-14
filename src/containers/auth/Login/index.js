@@ -20,7 +20,7 @@ class LoginPage extends React.Component {
           await api.login(values.username, values.password);
           this.setState({ loading: false });
 
-          history.push("/admin");
+          history.push("/");
         } catch (error) {
           console.log(error);
           this.setState({ loading: false });

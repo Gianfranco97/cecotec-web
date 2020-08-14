@@ -1,20 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 
-const GenerateRoutes = ({ routes, rootPath }) => (
+const GenerateRoutes = ({ routes, rootPath, isAuthenticated }) => (
   <React.Fragment>
     {routes.map((route, key) => (
       <Route
         key={key}
         exact={route.exact}
         path={rootPath ? rootPath + route.path : route.path}
-        render={(routeProps) => (
-          <route.component
-            sectionBarProps={{ ...route.sectionBarProps }}
-            {...routeProps}
-          />
-        )}
+        render={(routeProps) => {
+          if (route.isPrivate && !isAuthenticated) {
+            return (
+              <Redirect
+                to={{
+                  pathname: "/login",
+                  state: { from: routeProps.location },
+                }}
+              />
+            );
+          }
+          return (
+            <route.component
+              sectionBarProps={{ ...route.sectionBarProps }}
+              {...routeProps}
+            />
+          );
+        }}
       />
     ))}
   </React.Fragment>

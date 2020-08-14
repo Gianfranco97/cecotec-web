@@ -8,13 +8,18 @@ const API = {
         const res = await fetch(`${this.serverURL}login`, {
           method: "POST",
           headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            Accept: "application/json",
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
         });
 
-        resolve(res.json());
+        const sessionInfo = await res.json();
+        console.log(sessionInfo)
+
+        sessionStorage.setItem("session-token", sessionInfo["session-token"]);
+
+        resolve(sessionInfo);
       } catch (error) {
         reject(error);
       }
@@ -26,7 +31,7 @@ const API = {
       try {
         const res = await fetch(`${this.serverURL}products`);
 
-        resolve(res.json());
+        resolve(await res.json());
       } catch (error) {
         reject(error);
       }
@@ -40,7 +45,7 @@ const API = {
           method: "DELETE",
         });
 
-        resolve(res.json());
+        resolve(await res.json());
       } catch (error) {
         reject(error);
       }
@@ -53,13 +58,13 @@ const API = {
         const res = await fetch(`${this.serverURL}products`, {
           method: "POST",
           headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            Accept: "application/json",
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
         });
 
-        resolve(res.json());
+        resolve(await res.json());
       } catch (error) {
         reject(error);
       }
@@ -72,13 +77,77 @@ const API = {
         const res = await fetch(`${this.serverURL}products/${data.id}`, {
           method: "PUT",
           headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            Accept: "application/json",
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
         });
 
-        resolve(res.json());
+        resolve(await res.json());
+      } catch (error) {
+        reject(error);
+      }
+    });
+  },
+
+  getClients() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await fetch(`${this.serverURL}clients`);
+
+        resolve(await res.json());
+      } catch (error) {
+        reject(error);
+      }
+    });
+  },
+
+  deleteClients(id) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await fetch(`${this.serverURL}clients/${id}`, {
+          method: "DELETE",
+        });
+
+        resolve(await res.json());
+      } catch (error) {
+        reject(error);
+      }
+    });
+  },
+
+  addClients(data) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await fetch(`${this.serverURL}clients`, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        resolve(await res.json());
+      } catch (error) {
+        reject(error);
+      }
+    });
+  },
+
+  updateClients(data) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await fetch(`${this.serverURL}clients/${data.id}`, {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        resolve(await res.json());
       } catch (error) {
         reject(error);
       }
