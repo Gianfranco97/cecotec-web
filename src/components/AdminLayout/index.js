@@ -7,6 +7,8 @@ import {
   UnorderedListOutlined,
 } from "@ant-design/icons";
 import { withRouter } from "react-router-dom";
+import confirmLogout from "./confirmLogout";
+import api from "../../shared/api";
 import logoIMG from "../../assets/img/cecotec-logo.jpg";
 
 import "./styles.scss";
@@ -17,6 +19,17 @@ class AdminLayout extends React.Component {
   handleClick = (url) => {
     const { history } = this.props;
     history.push(url);
+  };
+
+  logout = () => {
+    const { history } = this.props;
+
+    confirmLogout(async () => {
+      try {
+        await api.logout();
+        history.push("/login");
+      } catch (error) {}
+    });
   };
 
   render() {
@@ -63,13 +76,7 @@ class AdminLayout extends React.Component {
               Products
             </Menu.Item>
 
-            <Menu.Item
-              key="4"
-              icon={<LogoutOutlined />}
-              onClick={() => {
-                console.log("Logout");
-              }}
-            >
+            <Menu.Item key="4" icon={<LogoutOutlined />} onClick={this.logout}>
               Logout
             </Menu.Item>
           </Menu>

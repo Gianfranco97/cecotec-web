@@ -13,6 +13,11 @@ server.post("/login", (req, res) => {
   });
 });
 
+// Fake Logout
+server.put("/logout", (req, res) => {
+  res.jsonp({});
+});
+
 server.use(router);
 
 server.listen(3010, () => {

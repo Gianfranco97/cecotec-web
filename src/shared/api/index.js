@@ -31,8 +31,20 @@ const API = {
         method: "POST",
         data: { user, password },
       },
-      async (dataJSON) => {
+      (dataJSON) => {
         sessionStorage.setItem("session-token", dataJSON["session-token"]);
+      }
+    );
+  },
+
+  logout() {
+    return this.makeRequest(
+      {
+        url: `${this.serverURL}logout`,
+        method: "PUT",
+      },
+      () => {
+        sessionStorage.clear();
       }
     );
   },
@@ -54,7 +66,7 @@ const API = {
     return this.makeRequest({
       url: `${this.serverURL}products`,
       method: "POST",
-      data
+      data,
     });
   },
 
@@ -62,7 +74,7 @@ const API = {
     return this.makeRequest({
       url: `${this.serverURL}products/${data.id}`,
       method: "PUT",
-      data
+      data,
     });
   },
 
@@ -83,7 +95,7 @@ const API = {
     return this.makeRequest({
       url: `${this.serverURL}clients`,
       method: "POST",
-      data
+      data,
     });
   },
 
@@ -91,7 +103,7 @@ const API = {
     return this.makeRequest({
       url: `${this.serverURL}clients/${data.id}`,
       method: "PUT",
-      data
+      data,
     });
   },
 };
