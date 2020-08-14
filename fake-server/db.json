@@ -1,8 +1,4 @@
 {
-  "login": {
-    "id": 1,
-    "session-token": "123456adc"
-  },
   "myUser": {
     "id": 1,
     "name": "Gianfranco Manganiello",
