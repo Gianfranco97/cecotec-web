@@ -1,156 +1,97 @@
 const API = {
-  serverURL: "http://localhost:3000/",
+  serverURL: "http://localhost:3010/",
 
-  login(user, password) {
+  makeRequest(request, callback) {
     return new Promise(async (resolve, reject) => {
       try {
-        const data = { user, password };
-        const res = await fetch(`${this.serverURL}login`, {
-          method: "POST",
+        const res = await fetch(request.url, {
+          method: request.method || "GET",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
+          body: request.data && JSON.stringify(request.data),
         });
 
-        const sessionInfo = await res.json();
-        console.log(sessionInfo)
+        const dataJSON = await res.json();
 
-        sessionStorage.setItem("session-token", sessionInfo["session-token"]);
+        if (callback) callback(dataJSON);
 
-        resolve(sessionInfo);
+        resolve(dataJSON);
       } catch (error) {
         reject(error);
       }
     });
   },
 
-  getProducts() {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const res = await fetch(`${this.serverURL}products`);
-
-        resolve(await res.json());
-      } catch (error) {
-        reject(error);
+  login(user, password) {
+    return this.makeRequest(
+      {
+        url: `${this.serverURL}login`,
+        method: "POST",
+        data: { user, password },
+      },
+      async (dataJSON) => {
+        sessionStorage.setItem("session-token", dataJSON["session-token"]);
       }
+    );
+  },
+
+  getProducts() {
+    return this.makeRequest({
+      url: `${this.serverURL}products`,
     });
   },
 
   deleteProducts(id) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const res = await fetch(`${this.serverURL}products/${id}`, {
-          method: "DELETE",
-        });
-
-        resolve(await res.json());
-      } catch (error) {
-        reject(error);
-      }
+    return this.makeRequest({
+      url: `${this.serverURL}products/${id}`,
+      method: "DELETE",
     });
   },
 
   addProducts(data) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const res = await fetch(`${this.serverURL}products`, {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
-
-        resolve(await res.json());
-      } catch (error) {
-        reject(error);
-      }
+    return this.makeRequest({
+      url: `${this.serverURL}products`,
+      method: "POST",
+      data
     });
   },
 
   updateProducts(data) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const res = await fetch(`${this.serverURL}products/${data.id}`, {
-          method: "PUT",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
-
-        resolve(await res.json());
-      } catch (error) {
-        reject(error);
-      }
+    return this.makeRequest({
+      url: `${this.serverURL}products/${data.id}`,
+      method: "PUT",
+      data
     });
   },
 
   getClients() {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const res = await fetch(`${this.serverURL}clients`);
-
-        resolve(await res.json());
-      } catch (error) {
-        reject(error);
-      }
+    return this.makeRequest({
+      url: `${this.serverURL}clients`,
     });
   },
 
   deleteClients(id) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const res = await fetch(`${this.serverURL}clients/${id}`, {
-          method: "DELETE",
-        });
-
-        resolve(await res.json());
-      } catch (error) {
-        reject(error);
-      }
+    return this.makeRequest({
+      url: `${this.serverURL}clients/${id}`,
+      method: "DELETE",
     });
   },
 
   addClients(data) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const res = await fetch(`${this.serverURL}clients`, {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
-
-        resolve(await res.json());
-      } catch (error) {
-        reject(error);
-      }
+    return this.makeRequest({
+      url: `${this.serverURL}clients`,
+      method: "POST",
+      data
     });
   },
 
   updateClients(data) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const res = await fetch(`${this.serverURL}clients/${data.id}`, {
-          method: "PUT",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
-
-        resolve(await res.json());
-      } catch (error) {
-        reject(error);
-      }
+    return this.makeRequest({
+      url: `${this.serverURL}clients/${data.id}`,
+      method: "PUT",
+      data
     });
   },
 };
