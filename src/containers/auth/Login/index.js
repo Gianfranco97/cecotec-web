@@ -4,7 +4,7 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import AuthLayout from "../../../components/AuthLayout";
-import api from "../../../shared/api";
+import api from "../../../shared/api-rest";
 
 import "./styles.scss";
 
@@ -23,7 +23,6 @@ class LoginPage extends React.Component {
 
           history.push("/");
         } catch (error) {
-          console.log(error);
           this.setState({ loading: false });
         }
       }, 1000);

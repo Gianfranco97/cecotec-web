@@ -9,7 +9,7 @@ import {
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import confirmLogout from "./confirmLogout";
-import api from "../../shared/api";
+import api from "../../shared/api-rest";
 import logoIMG from "../../assets/img/cecotec-logo.jpg";
 
 import "./styles.scss";
@@ -41,12 +41,6 @@ class AdminLayout extends React.Component {
         <Sider
           breakpoint="lg"
           collapsedWidth="0"
-          onBreakpoint={(broken) => {
-            console.log(broken);
-          }}
-          onCollapse={(collapsed, type) => {
-            console.log(collapsed, type);
-          }}
         >
           <div className="logo">
             <img src={logoIMG} alt="cecotec" />

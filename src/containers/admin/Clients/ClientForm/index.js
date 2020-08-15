@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Form, Input, Spin } from "antd";
 import PropTypes from "prop-types";
-import api from "../../../../shared/api";
+import api from "../../../../shared/api-graphql";
 
 const { TextArea } = Input;
 
@@ -19,11 +19,9 @@ class ClientForm extends React.Component {
     this.setState({ loading: true }, () => {
       setTimeout(async () => {
         try {
-          console.log(values);
-
           if (selectedClient)
-            await api.updateClients({ id: selectedClient.id, ...values });
-          else await api.addClients(values);
+            await api.updateClient({ id: selectedClient.id, ...values });
+          else await api.addClient(values);
 
           closeModal(true);
         } catch (error) {}
@@ -38,7 +36,7 @@ class ClientForm extends React.Component {
     return (
       <Modal
         title={
-          selectedClient ? `Update '${selectedClient.name}'` : `Add new product`
+          selectedClient ? `Update '${selectedClient.name}'` : `Add new client`
         }
         visible={visible}
         onOk={this.handleOk}

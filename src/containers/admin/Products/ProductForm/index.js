@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Form, Input, InputNumber, Spin } from "antd";
 import PropTypes from "prop-types";
-import api from "../../../../shared/api";
+import api from "../../../../shared/api-rest";
 
 class ProductForm extends React.Component {
   state = {
@@ -17,11 +17,9 @@ class ProductForm extends React.Component {
     this.setState({ loading: true }, () => {
       setTimeout(async () => {
         try {
-          console.log(values);
-
           if (selectedProduct)
-            await api.updateProducts({ id: selectedProduct.id, ...values });
-          else await api.addProducts(values);
+            await api.updateProduct({ id: selectedProduct.id, ...values });
+          else await api.addProduct(values);
 
           closeModal(true);
         } catch (error) {}

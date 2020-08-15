@@ -55,14 +55,14 @@ const API = {
     });
   },
 
-  deleteProducts(id) {
+  deleteProduct(id) {
     return this.makeRequest({
       url: `${this.serverURL}products/${id}`,
       method: "DELETE",
     });
   },
 
-  addProducts(data) {
+  addProduct(data) {
     return this.makeRequest({
       url: `${this.serverURL}products`,
       method: "POST",
@@ -70,7 +70,7 @@ const API = {
     });
   },
 
-  updateProducts(data) {
+  updateProduct(data) {
     return this.makeRequest({
       url: `${this.serverURL}products/${data.id}`,
       method: "PUT",
@@ -84,14 +84,14 @@ const API = {
     });
   },
 
-  deleteClients(id) {
+  deleteClient(id) {
     return this.makeRequest({
       url: `${this.serverURL}clients/${id}`,
       method: "DELETE",
     });
   },
 
-  addClients(data) {
+  addClient(data) {
     return this.makeRequest({
       url: `${this.serverURL}clients`,
       method: "POST",
@@ -99,7 +99,7 @@ const API = {
     });
   },
 
-  updateClients(data) {
+  updateClient(data) {
     return this.makeRequest({
       url: `${this.serverURL}clients/${data.id}`,
       method: "PUT",

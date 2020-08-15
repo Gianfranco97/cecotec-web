@@ -4,7 +4,7 @@ import { ShoppingFilled } from "@ant-design/icons";
 import ProductForm from "./ProductForm";
 import confirmDeleteProduct from "./confirmDeleteProduct";
 import AdminLayout from "../../../components/AdminLayout";
-import api from "../../../shared/api";
+import api from "../../../shared/api-rest";
 import "./styles.scss";
 
 class ProductsPage extends React.Component {
@@ -22,7 +22,7 @@ class ProductsPage extends React.Component {
   deleteProduct = (id) => {
     this.setState({ loading: true }, async () => {
       try {
-        await api.deleteProducts(id);
+        await api.deleteProduct(id);
 
         this.getData();
       } catch (error) {}
@@ -55,7 +55,7 @@ class ProductsPage extends React.Component {
     return (
       <AdminLayout title="Products">
         <List
-          className="demo-loadmore-list"
+          className="my-list"
           loading={loading}
           itemLayout="horizontal"
           dataSource={data}
@@ -86,7 +86,7 @@ class ProductsPage extends React.Component {
             >
               <List.Item.Meta
                 avatar={<ShoppingFilled style={{ fontSize: "22px" }} />}
-                title={<a href="https://ant.design">{item.name}</a>}
+                title={item.name}
                 description={
                   <>
                     <b>Price: </b> {item.price} <br />

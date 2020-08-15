@@ -4,7 +4,7 @@ import { UserOutlined } from "@ant-design/icons";
 import ClientForm from "./ClientForm";
 import confirmDeleteClient from "./confirmDeleteClient";
 import AdminLayout from "../../../components/AdminLayout";
-import api from "../../../shared/api";
+import api from "../../../shared/api-graphql";
 import "./styles.scss";
 
 class ClientsPage extends React.Component {
@@ -12,7 +12,7 @@ class ClientsPage extends React.Component {
     loading: true,
     showFormModal: false,
     data: [],
-    selectedProduct: null,
+    selectedClient: null,
   };
 
   componentDidMount() {
@@ -22,7 +22,7 @@ class ClientsPage extends React.Component {
   deleteProduct = (id) => {
     this.setState({ loading: true }, async () => {
       try {
-        await api.deleteClients(id);
+        await api.deleteClient(id);
 
         this.getData();
       } catch (error) {}
@@ -46,16 +46,16 @@ class ClientsPage extends React.Component {
 
   closeModal = (update) => {
     if (update) this.getData();
-    this.setState({ showFormModal: false, selectedProduct: null });
+    this.setState({ showFormModal: false, selectedClient: null });
   };
 
   render() {
-    const { loading, data, showFormModal, selectedProduct } = this.state;
+    const { loading, data, showFormModal, selectedClient } = this.state;
 
     return (
       <AdminLayout title="Clients">
         <List
-          className="demo-loadmore-list"
+          className="my-list"
           loading={loading}
           itemLayout="horizontal"
           dataSource={data}
@@ -67,7 +67,7 @@ class ClientsPage extends React.Component {
                   type="link"
                   onClick={() => {
                     this.setState({
-                      selectedProduct: item,
+                      selectedClient: item,
                       showFormModal: true,
                     });
                   }}
@@ -86,7 +86,7 @@ class ClientsPage extends React.Component {
             >
               <List.Item.Meta
                 avatar={<UserOutlined style={{ fontSize: "22px" }} />}
-                title={<a href="https://ant.design">{item.name}</a>}
+                title={item.name}
                 description={
                   <>
                     <b>Address: </b> {item.address} <br />
@@ -105,7 +105,7 @@ class ClientsPage extends React.Component {
           <ClientForm
             visible
             closeModal={this.closeModal}
-            selectedProduct={selectedProduct}
+            selectedClient={selectedClient}
           />
         )}
       </AdminLayout>
