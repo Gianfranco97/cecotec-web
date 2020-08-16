@@ -1,19 +1,10 @@
-function login() {
-  cy.get("#username").type("MyUser");
-  cy.get("#password").type("MyPassword");
-  cy.get(".ant-btn").click();
-}
-
 describe("Cecotec End to End Testing", () => {
   before(() => {
     sessionStorage.clear();
   });
 
-  beforeEach(() => {
-    cy.visit("http://localhost:3000");
-  });
-
   it("Forgot password message", () => {
+    cy.visit("http://localhost:3000");
     cy.get(".login-form-forgot").click();
     cy.get("#email").type("myEmail@email.com");
     cy.get(".ant-btn").click();
@@ -26,9 +17,14 @@ describe("Cecotec End to End Testing", () => {
     );
   });
 
-  it("Clients", () => {
-    login();
+  it("Login user", () => {
+    cy.visit("http://localhost:3000");
+    cy.get("#username").type("MyUser");
+    cy.get("#password").type("MyPassword");
+    cy.get(".ant-btn").click();
+  });
 
+  it("Clients", () => {
     // Go to Clients
     cy.get(".ant-menu > :nth-child(2)").click();
     cy.wait(1100);
@@ -38,7 +34,7 @@ describe("Cecotec End to End Testing", () => {
     cy.get("#userForm_name").type("New Client");
     cy.get("#userForm_address").type("Client Address");
     cy.get(".ant-btn-primary > span").click();
-    cy.wait(1100);
+    cy.wait(2200);
 
     cy.get(":nth-child(4) > .ant-list-item-meta").should("contain", "New");
     cy.get(":nth-child(4) > .ant-list-item-meta").should("contain", "Client");
@@ -50,7 +46,7 @@ describe("Cecotec End to End Testing", () => {
     cy.get("#userForm_name").clear().type("Update Client");
     cy.get("#userForm_address").clear().type("Actual Address");
     cy.get(".ant-btn-primary > span").click();
-    cy.wait(1100);
+    cy.wait(2200);
 
     cy.get(":nth-child(4) > .ant-list-item-meta").should("contain", "Update");
     cy.get(":nth-child(4) > .ant-list-item-meta").should("contain", "Actual");
@@ -76,7 +72,7 @@ describe("Cecotec End to End Testing", () => {
     cy.get("#userForm_price").type("250");
     cy.get("#userForm_quantity").type("3");
     cy.get(".ant-btn-primary > span").click();
-    cy.wait(1100);
+    cy.wait(2200);
 
     cy.get(":nth-child(5) > .ant-list-item-meta").should("contain", "New");
     cy.get(":nth-child(5) > .ant-list-item-meta").should("contain", "250");
@@ -90,7 +86,7 @@ describe("Cecotec End to End Testing", () => {
     cy.get("#userForm_price").clear().type("753");
     cy.get("#userForm_quantity").clear().type("4");
     cy.get(".ant-btn-primary > span").click();
-    cy.wait(1100);
+    cy.wait(2200);
 
     cy.get(":nth-child(5) > .ant-list-item-meta").should("contain", "Update");
     cy.get(":nth-child(5) > .ant-list-item-meta").should("contain", "753");

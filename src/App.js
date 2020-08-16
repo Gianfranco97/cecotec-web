@@ -3,18 +3,16 @@ import { BrowserRouter as Router } from "react-router-dom";
 import GenerateRoutes from "./components/GenerateRoutes";
 import routesAdmin from "./containers/admin";
 import routesAuth from "./containers/auth";
+import {AuthenticatedProvider} from "./components/AuthenticatedContext";
 
 class App extends Component {
   render() {
-    const isAuthenticated = !!sessionStorage.getItem("session-token");
-
     return (
-      <Router>
-        <GenerateRoutes
-          routes={[...routesAuth, ...routesAdmin]}
-          isAuthenticated={isAuthenticated}
-        />
-      </Router>
+      <AuthenticatedProvider>
+        <Router>
+          <GenerateRoutes routes={[...routesAuth, ...routesAdmin]} />
+        </Router>
+      </AuthenticatedProvider>
     );
   }
 }

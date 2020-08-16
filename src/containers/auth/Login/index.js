@@ -5,20 +5,24 @@ import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import AuthLayout from "../../../components/AuthLayout";
 import api from "../../../shared/api-rest";
+import AuthenticatedContext from "../../../components/AuthenticatedContext";
 
 import "./styles.scss";
 
 class LoginPage extends React.Component {
   state = { loading: false };
 
-  onFinish = (values) => {
+  onFinish = (values, changeAuthenticatedStatus) => {
     const { history } = this.props;
 
     this.setState({ loading: true }, () => {
       // setTimeout Used only to simulate a more realistic response time
       setTimeout(async () => {
         try {
-          await api.login(values.username, values.password);
+          const res = await api.login(values.username, values.password);
+          sessionStorage.setItem("session-token", res["session-token"]);
+          changeAuthenticatedStatus(true);
+
           this.setState({ loading: false });
 
           history.push("/");
@@ -29,8 +33,8 @@ class LoginPage extends React.Component {
     });
   };
 
-  loginPassword = () => (
-    <Form onFinish={this.onFinish}>
+  loginPassword = (changeAuthenticatedStatus) => (
+    <Form onFinish={(e) => this.onFinish(e, changeAuthenticatedStatus)}>
       <Form.Item
         name="username"
         rules={[{ required: true, message: "Please input your Username!" }]}
@@ -68,7 +72,11 @@ class LoginPage extends React.Component {
     return (
       <AuthLayout>
         <Spin spinning={loading} delay={500}>
-          {this.loginPassword()}
+          <AuthenticatedContext.Consumer>
+            {({ changeAuthenticatedStatus }) =>
+              this.loginPassword(changeAuthenticatedStatus)
+            }
+          </AuthenticatedContext.Consumer>
         </Spin>
       </AuthLayout>
     );

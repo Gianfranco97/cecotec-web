@@ -25,28 +25,18 @@ const API = {
   },
 
   login(user, password) {
-    return this.makeRequest(
-      {
-        url: `${this.serverURL}login`,
-        method: "POST",
-        data: { user, password },
-      },
-      (dataJSON) => {
-        sessionStorage.setItem("session-token", dataJSON["session-token"]);
-      }
-    );
+    return this.makeRequest({
+      url: `${this.serverURL}login`,
+      method: "POST",
+      data: { user, password },
+    });
   },
 
   logout() {
-    return this.makeRequest(
-      {
-        url: `${this.serverURL}logout`,
-        method: "PUT",
-      },
-      () => {
-        sessionStorage.clear();
-      }
-    );
+    return this.makeRequest({
+      url: `${this.serverURL}logout`,
+      method: "PUT",
+    });
   },
 
   getProducts() {
