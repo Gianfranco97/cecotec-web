@@ -19,6 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:cypress": "cypress run",
     "eject": "react-scripts eject",
     "fake-server": "node ./fake-server/server.js",
     "fake-server-graphql": "json-graphql-server fake-server/graphql.js --p 3011"
