@@ -76,7 +76,7 @@ class ProductForm extends React.Component {
 
 ProductForm.propTypes = {
   closeModal: PropTypes.func.isRequired,
-  visible: PropTypes.element.isRequired,
+  visible: PropTypes.bool,
   selectedProduct: PropTypes.object,
 };
 

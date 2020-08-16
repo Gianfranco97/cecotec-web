@@ -74,7 +74,7 @@ class ClientForm extends React.Component {
 
 ClientForm.propTypes = {
   closeModal: PropTypes.func.isRequired,
-  visible: PropTypes.element.isRequired,
+  visible: PropTypes.bool,
   selectedClient: PropTypes.object,
 };
 

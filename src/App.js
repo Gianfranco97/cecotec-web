@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import GenerateRoutes from "./components/GenerateRoutes";
 import routesAdmin from "./containers/admin";
 import routesAuth from "./containers/auth";
@@ -9,12 +9,14 @@ class App extends Component {
     const isAuthenticated = !!sessionStorage.getItem("session-token");
 
     return (
-      <GenerateRoutes
-        routes={[...routesAuth, ...routesAdmin]}
-        isAuthenticated={isAuthenticated}
-      />
+      <Router>
+        <GenerateRoutes
+          routes={[...routesAuth, ...routesAdmin]}
+          isAuthenticated={isAuthenticated}
+        />
+      </Router>
     );
   }
 }
 
-export default withRouter(App);
+export default App;
