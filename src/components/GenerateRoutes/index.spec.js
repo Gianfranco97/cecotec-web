@@ -3,6 +3,7 @@ import { shallow } from "enzyme";
 import GenerateRoutes from "./index.js";
 import { MemoryRouter } from "react-router-dom";
 import renderer from "react-test-renderer";
+import { AuthenticatedProvider } from "../AuthenticatedContext";
 
 const demoRoutes = [
   {
@@ -24,7 +25,9 @@ it("The snapshot matches", () => {
   const tree = renderer
     .create(
       <MemoryRouter>
-        <GenerateRoutes routes={demoRoutes} />
+        <AuthenticatedProvider>
+          <GenerateRoutes routes={demoRoutes} />
+        </AuthenticatedProvider>
       </MemoryRouter>
     )
     .toJSON();
@@ -33,5 +36,9 @@ it("The snapshot matches", () => {
 });
 
 it("renders without crashing", () => {
-  shallow(<GenerateRoutes routes={demoRoutes} />);
+  shallow(
+    <AuthenticatedProvider>
+      <GenerateRoutes routes={demoRoutes} />
+    </AuthenticatedProvider>
+  );
 });

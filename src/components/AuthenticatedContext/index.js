@@ -7,9 +7,6 @@ export function AuthenticatedProvider(props) {
     !!sessionStorage.getItem("session-token")
   );
 
-  console.log("isAuthenticated...");
-  console.log(isAuthenticated);
-
   return (
     <AuthenticatedContext.Provider
       {...props}

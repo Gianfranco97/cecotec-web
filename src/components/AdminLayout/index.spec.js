@@ -3,14 +3,17 @@ import { shallow } from "enzyme";
 import AdminLayout from "./index.js";
 import { MemoryRouter } from "react-router-dom";
 import renderer from "react-test-renderer";
+import { AuthenticatedProvider } from "../AuthenticatedContext";
 
 it("The snapshot matches", () => {
   const tree = renderer
     .create(
       <MemoryRouter>
-        <AdminLayout>
-          <div />
-        </AdminLayout>
+        <AuthenticatedProvider>
+          <AdminLayout>
+            <div />
+          </AdminLayout>
+        </AuthenticatedProvider>
       </MemoryRouter>
     )
     .toJSON();
