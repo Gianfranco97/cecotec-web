@@ -62,6 +62,7 @@ class ProductsPage extends React.Component {
           renderItem={(item) => (
             <List.Item
               key={`product-${item.id}`}
+              id={`product-${item.name}`.replace(' ', '-')}
               actions={[
                 <Button
                   type="link"

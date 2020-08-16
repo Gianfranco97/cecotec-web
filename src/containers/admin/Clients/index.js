@@ -61,7 +61,8 @@ class ClientsPage extends React.Component {
           dataSource={data}
           renderItem={(item) => (
             <List.Item
-              key={`product-${item.id}`}
+              key={`client-${item.id}`}
+              id={`client-${item.name}`.replace(" ", "-")}
               actions={[
                 <Button
                   type="link"

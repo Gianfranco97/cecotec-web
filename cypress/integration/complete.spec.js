@@ -36,29 +36,30 @@ describe("Cecotec End to End Testing", () => {
     cy.get(".ant-btn-primary > span").click();
     cy.wait(2200);
 
-    cy.get(":nth-child(4) > .ant-list-item-meta").should("contain", "New");
-    cy.get(":nth-child(4) > .ant-list-item-meta").should("contain", "Client");
+    cy.get("#client-New-Client");
+    cy.get("#client-New-Client").should("contain", "New");
+    cy.get("#client-New-Client").should("contain", "Client");
 
     // Update Client
     cy.get(
-      ":nth-child(4) > .ant-list-item-action > :nth-child(1) > .ant-btn > span"
+      "#client-New-Client > .ant-list-item-action > :nth-child(1) > .ant-btn > span"
     ).click();
     cy.get("#userForm_name").clear().type("Update Client");
     cy.get("#userForm_address").clear().type("Actual Address");
     cy.get(".ant-btn-primary > span").click();
     cy.wait(2200);
 
-    cy.get(":nth-child(4) > .ant-list-item-meta").should("contain", "Update");
-    cy.get(":nth-child(4) > .ant-list-item-meta").should("contain", "Actual");
+    cy.get("#client-Update-Client").should("contain", "Update");
+    cy.get("#client-Update-Client").should("contain", "Actual");
 
     // Delete Client
     cy.get(
-      ":nth-child(4) > .ant-list-item-action > :nth-child(2) > .ant-btn > span"
+      "#client-Update-Client > .ant-list-item-action > :nth-child(2) > .ant-btn > span"
     ).click();
     cy.get(".ant-btn-dangerous").click();
     cy.wait(1100);
 
-    cy.get(".ant-list-items > :nth-child(4)").should("not.exist");
+    cy.get(".ant-list-items > #client-Update-Client").should("not.exist");
   });
 
   it("Products", () => {
@@ -74,13 +75,19 @@ describe("Cecotec End to End Testing", () => {
     cy.get(".ant-btn-primary > span").click();
     cy.wait(2200);
 
-    cy.get(":nth-child(5) > .ant-list-item-meta").should("contain", "New");
-    cy.get(":nth-child(5) > .ant-list-item-meta").should("contain", "250");
-    cy.get(":nth-child(5) > .ant-list-item-meta").should("contain", "3");
+    cy.get("#product-New-Product > .ant-list-item-meta").should(
+      "contain",
+      "New"
+    );
+    cy.get("#product-New-Product > .ant-list-item-meta").should(
+      "contain",
+      "250"
+    );
+    cy.get("#product-New-Product > .ant-list-item-meta").should("contain", "3");
 
     // Update Product
     cy.get(
-      ":nth-child(5) > .ant-list-item-action > :nth-child(1) > .ant-btn > span"
+      "#product-New-Product > .ant-list-item-action > :nth-child(1) > .ant-btn > span"
     ).click();
     cy.get("#userForm_name").clear().type("Update Product");
     cy.get("#userForm_price").clear().type("753");
@@ -88,18 +95,27 @@ describe("Cecotec End to End Testing", () => {
     cy.get(".ant-btn-primary > span").click();
     cy.wait(2200);
 
-    cy.get(":nth-child(5) > .ant-list-item-meta").should("contain", "Update");
-    cy.get(":nth-child(5) > .ant-list-item-meta").should("contain", "753");
-    cy.get(":nth-child(5) > .ant-list-item-meta").should("contain", "4");
+    cy.get("#product-Update-Product > .ant-list-item-meta").should(
+      "contain",
+      "Update"
+    );
+    cy.get("#product-Update-Product > .ant-list-item-meta").should(
+      "contain",
+      "753"
+    );
+    cy.get("#product-Update-Product > .ant-list-item-meta").should(
+      "contain",
+      "4"
+    );
 
     // Delete Product
     cy.get(
-      ":nth-child(5) > .ant-list-item-action > :nth-child(2) > .ant-btn > span"
+      "#product-Update-Product > .ant-list-item-action > :nth-child(2) > .ant-btn > span"
     ).click();
     cy.get(".ant-btn-dangerous").click();
     cy.wait(1100);
 
-    cy.get(".ant-list-items > :nth-child(5)").should("not.exist");
+    cy.get(".ant-list-items > #product-Update-Product").should("not.exist");
   });
 
   it("Logout", () => {

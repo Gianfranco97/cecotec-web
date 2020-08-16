@@ -1,19 +1,19 @@
 module.exports = {
   clients: [
     {
+      name: "Jon Snow",
+      address: "Castle Black, 5 - Winterfell",
       id: 1,
-      name: "Lorem Ipsum",
-      address: "Non velit laborum amet adipisicing irure occaecat minim.",
     },
     {
+      name: "Han Solo",
+      address: "Corellia, 3",
       id: 2,
-      name: "Poo Seeero",
-      address: "Non velit laborum amet adipisicing irure occaecat minim.",
     },
     {
+      name: "Harry Potter",
+      address: "Privet Drive, 4 - Little Whinging",
       id: 3,
-      name: "Yuuyu Yyoyo",
-      address: "Non velit laborum amet adipisicing irure occaecat minim.",
     },
   ],
   products: [
