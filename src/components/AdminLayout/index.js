@@ -38,10 +38,7 @@ class AdminLayout extends React.Component {
 
     return (
       <Layout className="admin-layout">
-        <Sider
-          breakpoint="lg"
-          collapsedWidth="0"
-        >
+        <Sider breakpoint="lg" collapsedWidth="0">
           <div className="logo">
             <img src={logoIMG} alt="cecotec" />
           </div>
@@ -99,7 +96,11 @@ class AdminLayout extends React.Component {
 
 AdminLayout.propTypes = {
   history: PropTypes.object.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+    PropTypes.array,
+  ]).isRequired,
 };
 
 export default withRouter(AdminLayout);

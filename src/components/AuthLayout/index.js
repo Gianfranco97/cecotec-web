@@ -22,7 +22,11 @@ class AuthLayout extends React.Component {
 }
 
 AuthLayout.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+    PropTypes.array
+  ]),
 };
 
 export default AuthLayout;
